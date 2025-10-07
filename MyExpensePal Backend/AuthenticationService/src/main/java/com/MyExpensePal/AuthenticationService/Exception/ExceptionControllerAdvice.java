@@ -20,7 +20,7 @@ public class ExceptionControllerAdvice {
 	
 	@ExceptionHandler(INCORRECT_PASSWORD_EXCEPTION.class)
 	public ResponseEntity<String> emailAlreadyInUse(INCORRECT_PASSWORD_EXCEPTION exception) {
-		return new ResponseEntity<String>("Incorrect Password.", HttpStatus.OK);
+		return new ResponseEntity<String>("Incorrect Password.", HttpStatus.UNAUTHORIZED);
 	}
 	
 	@ExceptionHandler(ENTITY_FAILED_TO_SAVE_EXCEPTION.class)

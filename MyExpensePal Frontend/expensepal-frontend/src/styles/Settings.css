@@ -1,0 +1,66 @@
+.settings-container {
+    
+    margin: 20px auto;
+    padding: 30px;
+    width: 100%;
+    /* height: 100%; */
+    box-sizing: border-box;
+    overflow: hidden;
+    /* background-color: #f9f9f9; */
+  }
+  
+  .setting-section {
+    margin-bottom: 20px;
+  }
+  
+  .setting-section label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  
+  .setting-section input[type="number"],
+  .setting-section input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+  }
+  
+  .setting-section button {
+    padding: 8px 14px;
+  }
+  
+  .danger-zone {
+    margin-top: 30px;
+  }
+  
+  .danger-button {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    padding: 10px 14px;
+    margin-right: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .user-modal-content {
+    background: rgb(14, 62, 13);
+    padding: 25px;
+    border-radius: 6px;
+    width: 300px;
+    text-align: center;
+  }
+  

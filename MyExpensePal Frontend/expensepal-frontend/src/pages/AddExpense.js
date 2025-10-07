@@ -61,10 +61,14 @@ const AddExpense = () => {
           <label htmlFor="expenseType">Expense Type</label>
           <select id="expenseType" name='expenseType' value={expenseType} onChange={changeHandler}>
             <option value="" disabled>Select Type</option>
-            <option value="FOOD">Food</option>
             <option value="ENTERTAINMENT">Entertainment</option>
-            <option value="BILLS">Bills</option>
-            <option value="TRAVEL">Travel</option>
+            <option value="FOOD">Food</option>
+            <option value="HOME">Home</option>
+            <option value="LIFE">Life</option>
+            <option value="TRANSPORTATION">Transportation</option>
+            <option value="UTILITIES">Utilities</option>
+            <option value="UNCATEGORIZED">UNCATEGORIZED</option>
+            {/* <option value="TRAVEL">Travel</option>UNCATEGORIZED */}
           </select>
         </div>
         <div className={styles.htmlFormGroup}>

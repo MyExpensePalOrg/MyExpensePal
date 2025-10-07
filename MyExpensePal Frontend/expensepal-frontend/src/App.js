@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Navbar from "./pages/Navbar";
 import LogoutButton from "./pages/LogoutButton";
 import { BrowserRouter as Router, Routes, Route, Navigate, Link } from "react-router-dom";
@@ -23,8 +25,6 @@ import LandingPageNavbar from "./pages/LandingPageNavabar";
 
 const App = () => {
   const [token, setToken] = useState(localStorage.getItem("token") || null);
-  
-
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
     if (storedToken && !token) {
@@ -44,10 +44,12 @@ const App = () => {
   };
 
   return (
+    
     <Router>
        <Routes>
           <Route path="/" element={<LandingPageNavbar />}>
             <Route index element={<Home />} />
+            {/* <Route path="settings" element={<Settings />} /> */}
             <Route path="aboutus" element={<AboutUs />} />
             <Route path="features" element={<Features />} />
             <Route path="needhelp" element={<NeedHelp />} />
@@ -67,7 +69,7 @@ const App = () => {
                 </div>
                 <div className="sec2">
                   <div className="sec21">
-                    <div><Link to="/needhelp">Need Help?</Link></div>
+                    <div style={{paddingRight:"12px"}}><Link to="/needhelp" style={{textDecoration: 'none',color:"white"}}>Need Help?</Link></div>
                     <div className="profile">
                       <Link to="/getuserdetails">
                         <img src="/images/myphoto.jpg" alt="User" />
@@ -99,6 +101,7 @@ const App = () => {
           <Route path="*" element={<Navigate to="/" />} />
         )}
        </Routes>
+       <ToastContainer position="top-center" autoClose={2000} />
       
     </Router>
   );

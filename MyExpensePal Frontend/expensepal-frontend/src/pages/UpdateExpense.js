@@ -59,10 +59,12 @@ const UpdateExpense = () => {
       <div className="formRow">
         <label>Expense Type</label>
         <select id="expenseType" value={expense.expenseType} onChange={(e)=>setExpense({...expense, expenseType:e.target.value})} >
-            <option value="FOOD">Food</option>
-            <option value="TRAVEL">Travel</option>
             <option value="ENTERTAINMENT">Entertainment</option>
-            <option value="BILLS">Bills</option>
+            <option value="FOOD">Food</option>
+            <option value="HOME">Home</option>
+            <option value="LIFE">Life</option>
+            <option value="TRANSPORTATION">Transportation</option>
+            <option value="UTILITIES">Utilities</option>
         </select>
         {/* <input type='text' value={editExpense.expenseType} /> */}
       </div>

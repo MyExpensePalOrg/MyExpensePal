@@ -18,7 +18,7 @@ const GetExpense = () => {
         const fetchExpenses = async () => {
             // const userId = "41ca3afa-a016-46b2-b1fd-4b1d8ac1dc96";
             const userId=localStorage.getItem("userId");
-            console.log("dscsd:",userId);
+            //console.log("dscsd:",userId);
             const token = localStorage.getItem("token"); 
 
             try {
@@ -193,10 +193,12 @@ const GetExpense = () => {
                 <button className='email-btn' onClick={() => handleEmail()}>Send Email</button>
                 <select className="filter-container" onChange={handleFilterChange} value={selectedType}>
                     <option value="">All</option>
-                    <option value="FOOD">Food</option>
-                    <option value="TRAVEL">Travel</option>
-                    <option value="BILLS">Bills</option>
                     <option value="ENTERTAINMENT">Entertainment</option>
+                    <option value="FOOD">Food</option>
+                    <option value="HOME">Home</option>
+                    <option value="LIFE">Life</option>
+                    <option value="TRANSPORTATION">Transportation</option>
+                    <option value="UTILITIES">Utilities</option>
                 </select>
             </div>
             {error && <p className="error">{error}</p>}

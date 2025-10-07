@@ -14,7 +14,7 @@ const LandingPageNavbar = () => {
           <li className="navbar-item"><Link to="/aboutus">About Us</Link></li>
           <li className="navbar-item"><Link to="/features">Features</Link></li>
           <li className="navbar-item"><Link to="/needhelp">Nead Help</Link></li>
-          <li className="navbar-item"><Link to="/contactus">Contact Us</Link></li>
+          {/* <li className="navbar-item"><Link to="/contactus">Contact Us</Link></li> */}
           {token ? (
             <li className="navbar-item"><Link to="/dashboard">Dashboard</Link></li>
           ) : (

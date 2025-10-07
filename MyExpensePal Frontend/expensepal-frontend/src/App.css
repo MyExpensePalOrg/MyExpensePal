@@ -60,6 +60,7 @@ body{
   height: 6%;
   display: flex;
   justify-content: flex-end;
+  align-items: center;
 }
 
 .profile img {

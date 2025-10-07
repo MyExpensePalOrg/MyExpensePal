@@ -1,0 +1,20 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Launch Edge",
+        "type": "msedge",
+        "request": "launch",
+        "url": "http://localhost:3000",
+        "webRoot": "${workspaceFolder}/src",
+        "sourceMaps": true,
+        "userDataDir": "${workspaceFolder}/.vscode/edge",  // <-- this line added
+        "sourceMapPathOverrides": {
+          "webpack:///src/*": "${webRoot}/*",
+          "webpack:///./*": "${webRoot}/*",
+          "webpack:///*": "*"
+        }
+      }
+    ]
+  }
+  

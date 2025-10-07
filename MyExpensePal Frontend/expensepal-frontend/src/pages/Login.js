@@ -17,23 +17,31 @@ const Login = ({ onLogin }) => {
     const changeHandler = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
-
+    const [loading, setLoading] = useState(false);
     const submitHandler = async (e) => {
         e.preventDefault();
-        
+        setLoading(true);        
         try {
             
             const response = await axios.post("http://localhost:8080/auth/login", formData);
             console.log("Login response data:", response.data);
+            console.log("Response Status:", response.status);
             localStorage.setItem("token", response.data);
             const token = localStorage.getItem("token");
             console.log("Setted Token is:", token);
             onLogin(localStorage.getItem("token")); 
             setTimeout(() => navigate("/dashboard"), 100);
-            //const token = localStorage.getItem("token")
-            localStorage.setItem("userId", (jwtDecode(token).sub));           
+        //const token = localStorage.getItem("token")
+            localStorage.setItem("userId", (jwtDecode(token).sub));
+                       
         } catch (error) {
-            console.error("Login Error:", error.response?.data || error.message);
+            if (error.response && error.response.status === 404) {
+                alert("Incorrect Email or Password");
+            } else {
+                alert("Login Error: " + (error.response?.data || error.message));
+            }
+        } finally{
+            setLoading(false);
         }
     };
 
@@ -48,7 +56,11 @@ const Login = ({ onLogin }) => {
                     <label htmlFor="password">Password</label>
                     <input type="password" name="password" value={formData.password} onChange={changeHandler} placeholder='Password' />
                     
-                    <button type="submit" value="Login">Login</button>
+                    {/* <button type="submit" value="Login">Login</button> */}
+                    <button type="submit" disabled={loading}>
+                        {loading ? "Logging in..." : "Login"}
+                    </button>
+
                     
                     <p><a href="#">Forgot password?</a></p>
                     <p>Don't have an account? <a href="#">Sign up</a></p>            

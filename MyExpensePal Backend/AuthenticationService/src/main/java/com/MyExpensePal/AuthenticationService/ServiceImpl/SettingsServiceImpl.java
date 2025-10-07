@@ -45,7 +45,7 @@ public class SettingsServiceImpl implements SettingsService {
 	@Override
 	public ResponseEntity<UserSettingsDto> getSettingsByUserId(UUID userId) {
 		UserSettingsEntity settings = settingsRepository.findByUserId(userId);
-		return new ResponseEntity<UserSettingsDto>(SettingsMapper.EntityToDto(settings), HttpStatus.FOUND);
+		return new ResponseEntity<UserSettingsDto>(SettingsMapper.EntityToDto(settings), HttpStatus.OK);
 	}
 
 	@Override

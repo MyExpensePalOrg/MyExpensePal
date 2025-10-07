@@ -1,9 +1,11 @@
 import React from 'react'
+// import AboutUs from './AboutUs'
+import AIMain from './AI-Service/AIMain'
 
 const Chat = () => {
   return (
     <div>
-        <h3>Work in progress! Chat will be enabled soon.</h3>
+        <AIMain />
       
     </div>
   )

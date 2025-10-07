@@ -28,12 +28,12 @@ public interface ExpensesRepository extends JpaRepository<ExpenseEntity, UUID> {
 	@Query(nativeQuery = true, value = "select sum(expense) from my_expense_pal.expense_entity where user_id=? and expense_type=?;")
 	Integer expensesTotalBasedOnExpenseType(UUID userId, String expenseType);
 
-	@Query(nativeQuery = true, value = "SELECT expense_type, sum(expense) total FROM my_expenses_pal.expense_entity where user_id=? and"
+	@Query(nativeQuery = true, value = "SELECT expense_type, sum(expense) total FROM my_expense_pal.expense_entity where user_id=? and"
 			+ " `date` between ? and ? group by expense_type order by total desc limit 3;")
 	List<Map<String, Integer>> getTopThreeCategoriesOfMonth(UUID userId, LocalDate fromDate , LocalDate toDate);
 
 	@Modifying
 	@Transactional
-	@Query(nativeQuery = true, value = "DELETE FROM my_expenses_pal.expense_entity WHERE user_id = :userId;")
+	@Query(nativeQuery = true, value = "DELETE FROM my_expense_pal.expense_entity WHERE user_id = :userId;")
 	void deleteExpenseByUserId(@Param("userId") UUID userId);
 }

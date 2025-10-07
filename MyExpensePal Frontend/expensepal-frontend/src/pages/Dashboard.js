@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import '../styles/Dashboard.css';
 import axios from 'axios';
-import {Pie, Bar} from 'react-chartjs-2';
+import {Bar} from 'react-chartjs-2';
 import{Chart as ChartJs, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend,ArcElement} from 'chart.js';
 
 // Register Chart.js components
@@ -17,10 +17,8 @@ ChartJs.register(
 
 const Dashboard = () => {
   // console.log(expenses);
+  const [topCategories, setTopCategories] = useState([]);
   const [expenses, setExpenses] = useState([]);
-  const [foodTotal, setFoodTotal] = useState(0);
-  const [billsTotal, setBillsTotal] = useState(0);
-  const [entertainmentTotal, setEntertainmentTotal] = useState(0);
   const [monthlyData, setMonthlyData] = useState({});
   const [selectedYear, setSelectedYear] = useState(null);
   const [tenLatestTransactions, setTenLatestExpense]= useState([]);
@@ -29,20 +27,6 @@ const Dashboard = () => {
   useEffect(() => {
     const userId = localStorage.getItem("userId"); 
     const token = localStorage.getItem("token");
-    const fetchExpenseTotal = async (expenseType, setTotal) => {
-      try {
-        const response = await axios.get(`http://localhost:8080/expense/calculateTotalSumOfExpenseType/${expenseType}`, {
-          
-          headers: {
-            Authorization: `Bearer ${token}`,
-            'userId': userId
-          }
-        });
-        setTotal(response.data); 
-      } catch (error) {
-        console.error(`Error fetching ${expenseType} total:`, error);
-      }
-    };
     const fetchTenLatestExpenses = async () =>{
       try{
         const response = await axios.get('http://localhost:8080/expense/tenLatestTransactions',{
@@ -59,10 +43,6 @@ const Dashboard = () => {
       }
     };
     fetchTenLatestExpenses();
-    // Fetch totals for each category
-    fetchExpenseTotal("FOOD", setFoodTotal);
-    fetchExpenseTotal("UTILITIES", setBillsTotal);
-    fetchExpenseTotal("ENTERTAINMENT", setEntertainmentTotal);
 
     const fetchExpenses = async () => {
       try {
@@ -78,27 +58,42 @@ const Dashboard = () => {
       }
     };
     fetchExpenses();
+    const fetchTopThreeCategories = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8080/expense/getTopThreeCategoriesOfMonth`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'userId': userId
+          }
+        });
+        setTopCategories(response.data); 
+        console.log(response)
+      } catch (error) {
+        console.error("Error fetching top categories:", error);
+      }
+    };
+    
+    fetchTopThreeCategories();
   }, []);
   useEffect(() => {
     // console.log(expenses.date);
     if (expenses && expenses.length > 0) {
       let expenseMap = {};
-
-      // Group expenses by year and month
       expenses.forEach(expense => {
-        const date = new Date(expense.date);
-        const year = date.getFullYear();
-        const month = date.getMonth();
-
+        const [yearStr, monthStr] = expense.date.split("-"); 
+        const year = parseInt(yearStr);
+        const month = parseInt(monthStr) - 1; // Jan = 0
+      
         if (!expenseMap[year]) {
-          expenseMap[year] = Array(12).fill(0); // Initializing an array for the months
+          expenseMap[year] = Array(12).fill(0);
         }
         expenseMap[year][month] += expense.expense;
       });
+      
 
       setMonthlyData(expenseMap);
-      const latestYear = Math.max(...Object.keys(expenseMap).map(Number)); //Set the latest year as the default
-      setSelectedYear(latestYear.toString());// Set the latest year as the default
+      const latestYear = Math.max(...Object.keys(expenseMap).map(Number)); 
+      setSelectedYear(latestYear.toString());// with this will set the latest year as the default
     }
   }, [expenses]);
   const generateChartData = (year) => {
@@ -122,30 +117,20 @@ const Dashboard = () => {
   };
 
   const years = Object.keys(monthlyData);
-  useEffect(()=>{
-    console.log(tenLatestTransactions);
-  },[tenLatestTransactions]);
+
   return (
     <div className='d-main'>
       
       <div className='d-main1'>
         <div className='d-one'>
-          <div className='food'>
-            <h4>Food</h4>
-            <p>Total: ${foodTotal}</p>
-           
-          </div>
-          <div className='bill'>
-            <h4>Utilities</h4>
-            <p>Total: ${billsTotal}</p>
-
-          </div>
-          <div className='enter'>
-            <h4>Entertainment</h4>
-            <p>Total: ${entertainmentTotal}</p>            
-          </div>
-          
+          {topCategories.map((item, index) => (
+            <div key={index} className='food'>
+              <h4>{item.expense_type}</h4>
+              <p>Total: ₹{item.total}</p>
         </div>
+        ))}
+      </div>
+
       
         <div className='d-two'>
           {/* <Bar data={generateChartData()} /> */}

@@ -11,20 +11,21 @@ const AboutUs = () => {
 
       <h2>Meet the Creators</h2>
       <div className="creator">
-        <div>
-          <h3>Praveen Muddunur</h3>
-        </div>
-        <div>
-          <h3>Bhargav Siddineni</h3>
-        </div>
+        <h3>Praveen Muddunur</h3>
+        <h3>Bhargav Siddineni</h3>
       </div>
+
+      <h2>Guided By</h2>
+      <p className="professor-name">Prof. Ausif Mohammad</p>
+
       <h2>Why We Built This App?</h2>
       <p>
-        MyExpensePal was created to help users take control of their finances with a simple and intuitive interface.
+        MyExpensePal was created to help users take control of their finances with a simple and intuitive interface. We wanted to create a personal budgeting tool that’s not just easy to use, but also enjoyable.
       </p>
+
       <h2>Future Plans</h2>
       <p>
-        We are working on adding new features such as live chat support, AI-based insights, and more integrations.
+        We are working on adding features like live chat support, detailed analytics, and integration with other financial platforms.
       </p>
     </div>
   );
