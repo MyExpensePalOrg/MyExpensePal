@@ -9,13 +9,13 @@
 			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
 		</conditionalStyle>
 	</style>
-	<field name="expenseId" class="java.lang.String"/>
+	<field name="expenseId" class="java.util.UUID"/>
 	<field name="expenseName" class="java.lang.String"/>
 	<field name="expense" class="java.lang.Integer"/>
-	<field name="expenseType" class="java.lang.String"/>
+	<field name="expenseType" class="com.MyExpensePal.ReportGenerationService.Model.ExpenseType"/>
 	<field name="location" class="java.lang.String"/>
-	<field name="date" class="java.lang.String"/>
-	<field name="time" class="java.lang.String"/>
+	<field name="date" class="java.time.LocalDate"/>
+	<field name="time" class="java.time.LocalTime"/>
 	<background splitType="Stretch"/>
 	<title height="102" splitType="Stretch">
 		<element kind="image" uuid="651ccc4b-e999-40fe-bcbf-1f25bcfc98af" x="725" y="0" width="77" height="102">

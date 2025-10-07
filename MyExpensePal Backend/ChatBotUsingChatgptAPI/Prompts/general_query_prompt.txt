@@ -1,0 +1,5 @@
+Below are the user's latest expenses. The list may include upto 30 entries. Please answer
+{expense_list}
+Please answer the following query based on the expense logs provided.
+query : {query}
+timestamp : {timestamp}

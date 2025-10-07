@@ -25,6 +25,8 @@ public class GatewayConfig {
 						.uri("lb://REPORT-GENERATION-SERVICE"))
 				.route("Mailing-Service", r->r.path("/mail/**")
 						.uri("lb://MAILING-SERVICE"))
+				.route("Chat-Service", r->r.path("/chat/**")
+						.uri("lb://CHAT-SERVICE"))
 				.build();
 	}
 	

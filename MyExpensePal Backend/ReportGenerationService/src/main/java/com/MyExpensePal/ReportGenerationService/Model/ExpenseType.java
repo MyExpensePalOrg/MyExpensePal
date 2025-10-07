@@ -2,5 +2,5 @@ package com.MyExpensePal.ReportGenerationService.Model;
 
 public enum ExpenseType {
 
-	FOOD, BILLS, ENTERTAINMENT
+	ENTERTAINMENT, FOOD, HOME, LIFE, TRANSPORTATION, UTILITIES, UNCATEGORIZED
 }

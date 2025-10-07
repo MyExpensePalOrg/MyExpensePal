@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.Project.MyExpensePal.Entity.ExpenseEntity;
+import com.Project.MyExpensePal.Exception.NO_FILTERS_TO_GENETRATE_QUERY_EXCEPTION;
 import com.Project.MyExpensePal.Exception.NO_USER_EXPENSES_FOUND_EXCEPTION;
 
 
@@ -33,5 +34,11 @@ public interface ExpenseService {
 
 	public ResponseEntity<List<Map<String, Integer>>> getTopThreeCategoriesOfMonth(UUID userId, String startDate, String endDate);
 
+	public ResponseEntity<List<ExpenseEntity>> getMatchingEntitiesUsingFilter(String userId, ExpenseEntity filterData) throws NO_FILTERS_TO_GENETRATE_QUERY_EXCEPTION;
+
 	public ResponseEntity<Boolean> deleteAllExpensesOfUser(UUID userId);
+
+	public ResponseEntity<List<ExpenseEntity>> getExpensesInDateRangeOf(UUID userId, String fromDate,
+			String toDate);
+
 }

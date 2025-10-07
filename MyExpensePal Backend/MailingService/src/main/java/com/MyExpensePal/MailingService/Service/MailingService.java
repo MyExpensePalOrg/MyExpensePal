@@ -9,6 +9,7 @@ import jakarta.mail.MessagingException;
 @Service
 public interface MailingService {
 
-	String generateAndSendFullReport(UUID userId) throws MessagingException;
+	String generateAndSendFullReport(UUID userId, String token) throws MessagingException;
 
+	void sendMonthlyReportToUsers() throws MessagingException;
 }

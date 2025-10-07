@@ -1,5 +1,7 @@
 package com.MyExpensePal.ReportGenerationService.Model;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.UUID;
 
@@ -24,8 +26,8 @@ public class ExpensesModel {
 	private ExpenseType expenseType;
 	private String location;
 	private TransactionType transactionType;
-	private Date date;
-	private Date time;
+	private LocalDate date;
+	private LocalTime time;
 	private Date createdOn;
 	private Date lastModified;
 	

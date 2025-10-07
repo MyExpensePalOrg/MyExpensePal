@@ -16,14 +16,14 @@ import jakarta.mail.MessagingException;
 @RestController
 @RequestMapping("/mail/")
 public class MailingController {
-	
+
 	@Autowired
 	private MailingService mailingService;
-	
-	
+
 	@GetMapping("/sendAllExpensesReport")
-	public String sendMail(@RequestHeader("userId") String userId) throws MessagingException {
-		return mailingService.generateAndSendFullReport(UUID.fromString(userId));
+	public String sendMail(@RequestHeader("userId") String userId, @RequestHeader("Authorization") String token)
+			throws MessagingException {
+		return mailingService.generateAndSendFullReport(UUID.fromString(userId), token);
 	}
 
 }
